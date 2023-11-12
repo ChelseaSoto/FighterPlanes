@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -10,12 +12,19 @@ public class Player : MonoBehaviour
     private float horizontalScreenLimit = 10f;
     private float verticalScreenLimit = 4f;
     public int lives;
+    public TextMeshProUGUI updateLives;
 
     // Start is called before the first frame update
     void Start()
     {
         playerSpeed = 6f;
         lives = 3;
+        
+        if (updateLives == null){
+            updateLives = GameObject.Find("Lives").GetComponent<TextMeshProUGUI>();
+        }
+        
+        updateLives.text = "Lives: " + lives;
     }
 
     // Update is called once per frame
@@ -35,7 +44,8 @@ public class Player : MonoBehaviour
         if (transform.position.y < -verticalScreenLimit)
         {
             transform.position = new Vector3(transform.position.x, -verticalScreenLimit, 0);
-        } else if (transform.position.y >= 0)
+        }
+        else if (transform.position.y >= 0)
         {
             transform.position = new Vector3(transform.position.x, 0, 0);
         }
@@ -43,7 +53,7 @@ public class Player : MonoBehaviour
 
     void Shooting()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(bulletPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
         }
@@ -54,9 +64,9 @@ public class Player : MonoBehaviour
         lives--;
         //lives -= 1;
         //lives = lives - 1;
-        if (lives <= 0) 
+        updateLives.text = "Lives: " + lives;
+        if (lives <= 0)
         {
-            //Game Over
             GameObject.Find("GameManager").GetComponent<GameManager>().GameOver();
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
