@@ -644,6 +644,7 @@ MonoBehaviour:
   cloudsMove: 0
   scoreText: {fileID: 191034276}
   livesText: {fileID: 2097065669}
+  coinPrefab: {fileID: 8390802567788242568, guid: 2ff8e54baabdf0e4faf98bbb71dd29dd, type: 3}
 --- !u!114 &1689831065
 MonoBehaviour:
   m_ObjectHideFlags: 0
