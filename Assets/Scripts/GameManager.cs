@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         cloudsMove = 1;
         score = 0;
         scoreText.text = "Score: " + score;
-		InvokeRepeating("SpawnCoin", 10f, 120f);
+		InvokeRepeating("SpawnCoin", 5f, 34f);
     }
 
     // Update is called once per frame

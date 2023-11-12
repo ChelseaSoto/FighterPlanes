@@ -16,9 +16,12 @@ public class Coin : MonoBehaviour
         
     }
 	
-	private void OnTriggerEnter2D()
+	private void OnTriggerEnter2D(Collider2D whatIHit)
     {
-		GameObject.Find("GameManager").GetComponent<GameManager>().EarnScore(1);
-		Destroy(this.gameObject);
+        if(whatIHit.tag == "Player")
+        {
+			GameObject.Find("GameManager").GetComponent<GameManager>().EarnScore(1);
+			Destroy(this.gameObject);
+		}
 	}
 }
